@@ -5,7 +5,7 @@
  */
 package com.mycompany.jerseytutorial.databases;
 
-import com.mycompany.jerseytutorial.models.Comment;
+import com.mycompany.jerseytutorial.models.*;
 import com.mycompany.jerseytutorial.models.Message;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +17,26 @@ import java.util.List;
 public class Database {
     public static List<Message> messageDB = new ArrayList<>();
     public static List<Comment> commentDB = new ArrayList<>();
+    public static List<Customer> customerDB = new ArrayList<>();
     public static boolean init = true;
      
     // Lets create a constructor for the class
     public Database () {
       if (init) {
+          
+          
+       // Create customers
+       Customer cus1 = new Customer (1,"Robin O'reily", "Dublin", "robin@email.com");  
+       Customer cus2 = new Customer (2,"Mark Boontjes", "Cork", "mark@email.com");  
+       Customer cus3 = new Customer (3,"Dirk de Vries", "Galway", "dirk@email.com");  
+
+        customerDB.add(cus1);
+        customerDB.add(cus2);
+        customerDB.add(cus3);
+          
+          
+          
+          
           
         // Lets create some comments
         Comment c1 = new Comment (1,"One comment");  
@@ -48,6 +63,10 @@ public class Database {
         
         init = false;
      }
+    }
+    
+     public static List<Customer> getCustomersDB() {
+        return customerDB;
     }
     
     public static List<Message> getMessagesDB() {
