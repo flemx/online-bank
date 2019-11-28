@@ -8,6 +8,7 @@ package com.mycompany.jerseytutorial.databases;
 import com.mycompany.jerseytutorial.models.*;
 import com.mycompany.jerseytutorial.models.Message;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +24,8 @@ public class Database {
     // Lets create a constructor for the class
     public Database () {
       if (init) {
-          
+       
+      List<String> accountTypes =  Arrays.asList("current", "saving", "credit");
           
        // Create customers
        Customer cus1 = new Customer (1,"Robin O'reily", "Dublin", "robin@email.com");  
@@ -33,8 +35,22 @@ public class Database {
         customerDB.add(cus1);
         customerDB.add(cus2);
         customerDB.add(cus3);
-          
-          
+        
+        
+        
+        // Add accounts to customers
+        for(int i = 0; i < customerDB.size(); i++){
+            List<Account> accounts = new ArrayList<Account>();
+            for(int j = 0; j < 3; j++){
+                Account acc = new Account(
+                         i+j, 
+                         customerDB.get(i).getId(),
+                        "BANK01",
+                        accountTypes.get(j));
+                accounts.add(acc);
+            }
+            customerDB.get(i).setAccounts(accounts);
+        }
           
           
           

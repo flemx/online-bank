@@ -7,8 +7,7 @@ package com.mycompany.jerseytutorial.services;
 
 
 import com.mycompany.jerseytutorial.databases.Database;
-import com.mycompany.jerseytutorial.models.Customer;
-import com.mycompany.jerseytutorial.models.Message;
+import com.mycompany.jerseytutorial.models.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,12 @@ public class CustomerService {
 
         
     public static Customer geCustomer(int id) {
-        return list.get(id-1);
+        Customer cus = list.get(id-1);
+        return cus;
+    }
+    
+     public static List<Account> geCustomerAccounts(int id) {
+        return list.get(id-1).getAccounts();
     }
       
 }

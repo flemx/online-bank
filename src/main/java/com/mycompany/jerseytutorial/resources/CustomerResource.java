@@ -40,4 +40,11 @@ public class CustomerResource {
 	return CustomerService.geCustomer(id);
     }
     
+    @GET
+    @Path("/{customerID}/accounts")
+    public List<Account> getCustomerAccounts(@PathParam("customerID") int id) {
+    	System.out.println("geCustomer..."+id);
+	return CustomerService.geCustomerAccounts(id);
+    }
+    
 }

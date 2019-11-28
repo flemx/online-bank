@@ -5,15 +5,16 @@
  */
 package com.mycompany.jerseytutorial.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.xml.bind.annotation.XmlRootElement;
+//import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author dfleminks
  */
-@XmlRootElement
+//@XmlRootElement
 public class Customer {
     
     private int id;
@@ -21,16 +22,18 @@ public class Customer {
     private Date created;
     private String Address;
     private String Email;
-    //private List<Account> accounts;
+    private List<Account> accounts;
     
-
+    //Constructor - Accounts to be added through setter
     public Customer(int id, String Name, String Address, String Email) {
         this.id = id;
         this.Name = Name;
         this.created = new Date();;
         this.Address = Address;
         this.Email = Email;
+        this.accounts = new ArrayList<Account>();
     }
+ 
 
     public Customer() {
     }
@@ -73,6 +76,14 @@ public class Customer {
 
     public void setEmail(String Email) {
         this.Email = Email;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
     }
     
     
