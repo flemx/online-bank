@@ -3,8 +3,56 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap" rel="stylesheet"> 
+        <!--<script src="scripts.js"></script>-->
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Online Bank</h1>
+        
+        <div id="nav-area">
+            <ul id="nav-list">
+                <li class="nav-item"> <a href="">Customers</a> </li>
+                <li class="nav-item"> <a href="">Accounts</a> </li>
+                <li class="nav-item"> <a href="">Transactions</a> </li>
+            </ul>
+        </div>
+        
+        <div id="content-area">
+            
+            <div id="content">
+                
+                <div id ="customer-data">content goes here</div>
+                                
+            </div>
+            
+        </div>
+        
+        
+        <script>
+            
+            fetch('./api/customers')
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.log('Looks like a problem chief. Status \n\
+                              Code: ' + response.status);
+                            return;
+                        }
+
+                        response.json().then(function(data) {
+                            console.log(data);
+                            pData = JSON.stringify(data);
+                            document.getElementById("customer-data").innerHTML = 
+                                    pData;
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.log('Fetch Error' , err);
+                });
+                               
+        </script>
+        
     </body>
 </html>
