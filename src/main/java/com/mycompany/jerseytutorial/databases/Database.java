@@ -6,10 +6,11 @@
 package com.mycompany.jerseytutorial.databases;
 
 import com.mycompany.jerseytutorial.models.*;
-import com.mycompany.jerseytutorial.models.Message;
+import types.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -19,13 +20,15 @@ public class Database {
     public static List<Message> messageDB = new ArrayList<>();
     public static List<Comment> commentDB = new ArrayList<>();
     public static List<Customer> customerDB = new ArrayList<>();
+    public static List<Account> accountDB = new ArrayList<>();
     public static boolean init = true;
      
     // Lets create a constructor for the class
     public Database () {
       if (init) {
        
-      List<String> accountTypes =  Arrays.asList("current", "saving", "credit");
+      List<AccountType> accountTypes =  Arrays.asList(AccountType.CURRENT, AccountType.SAVING, AccountType.CREDIT);
+      List<TransType> transactionTypes =  Arrays.asList(TransType.DEPOSIT, TransType.TRANFSER, TransType.WITHDRAW);
           
        // Create customers
        Customer cus1 = new Customer (1,"Robin O'reily", "Dublin", "robin@email.com");  
@@ -38,16 +41,38 @@ public class Database {
         
         
         
-        // Add accounts to customers
+        // Add accounts to customers with transactions
         for(int i = 0; i < customerDB.size(); i++){
             List<Account> accounts = new ArrayList<Account>();
+            
+            // Generate 3 Accounts
             for(int j = 0; j < 3; j++){
+                List<Transaction> transactions = new ArrayList<Transaction>();
+                //Generate3 transactions
+                for(int k = 0; k < 3; k++){
+                    int randomBalance = new Random().nextInt();
+                    int balanceSum = 0;
+                    
+                    for(Transaction tr : transactions){
+                        balanceSum = balanceSum + tr.getAmount();
+                    }
+                    Transaction tran = new Transaction(
+                            k,
+                            j,
+                            randomBalance,
+                            transactionTypes.get(k),
+                            balanceSum + randomBalance
+                    );
+                    transactions.add(tran);
+                }
                 Account acc = new Account(
-                         i+j, 
+                         j, 
                          customerDB.get(i).getId(),
                         "BANK01",
-                        accountTypes.get(j));
+                        accountTypes.get(j),
+                        transactions);
                 accounts.add(acc);
+                accountDB.add(acc);
             }
             customerDB.get(i).setAccounts(accounts);
         }
@@ -84,6 +109,12 @@ public class Database {
      public static List<Customer> getCustomersDB() {
         return customerDB;
     }
+
+    public static List<Account> getAccountDB() {
+        return accountDB;
+    }
+     
+     
     
     public static List<Message> getMessagesDB() {
         return messageDB;

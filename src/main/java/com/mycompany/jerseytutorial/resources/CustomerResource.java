@@ -47,4 +47,11 @@ public class CustomerResource {
 	return CustomerService.geCustomerAccounts(id);
     }
     
+    @GET
+    @Path("/{customerID}/accounts/{accountNumber}/transactions")
+    public List<Transaction> getAccountTransactions(@PathParam("accountNumber") int id) {
+    	System.out.println("geCustomer..."+id);
+	return CustomerService.getAccountTransactions(id);
+    }
+    
 }

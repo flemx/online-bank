@@ -19,6 +19,7 @@ public class CustomerService {
     
       private static Database d = new Database();
       private static List<Customer> list = d.getCustomersDB();
+       private static List<Account> accounts = d.getAccountDB();
       
        public static List<Customer> getAllCustomers() {
         return list;
@@ -26,12 +27,17 @@ public class CustomerService {
 
         
     public static Customer geCustomer(int id) {
-        Customer cus = list.get(id-1);
+        Customer cus = list.get(id);
         return cus;
     }
     
-     public static List<Account> geCustomerAccounts(int id) {
-        return list.get(id-1).getAccounts();
+    public static List<Account> geCustomerAccounts(int id) {
+        return list.get(id).getAccounts();
+    }
+    
+    // To be moved to Account services class!!!
+    public static List<Transaction> getAccountTransactions(int accountId) {
+        return accounts.get(1).getTransactions();
     }
       
 }
