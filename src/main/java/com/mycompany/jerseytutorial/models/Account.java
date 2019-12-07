@@ -24,12 +24,13 @@ public class Account {
     private List<Transaction> transactions;
 
     //Constructor - Transactions to be added through setter
-    public Account(int accountNumber, int customerId, String sortCode, AccountType accountType, List<Transaction> transactions) {
+    public Account(int accountNumber, int customerId, String sortCode, AccountType accountType, List<Transaction> transactions, int balance) {
         this.accountNumber = accountNumber;
         this.customerId = customerId;
         this.sortCode = sortCode;
         this.accountType = accountType;
         this.created = new Date();
+        this.transactions = transactions;
         
         // Generate balance from sum of transactions
         for(Transaction tran: transactions){
@@ -37,6 +38,7 @@ public class Account {
         }
         
     }
+    
 
     public Account() {
     }
@@ -75,11 +77,23 @@ public class Account {
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
-
+    
+    /**
+     *  Return balance based on sum of transactions
+     * @return 
+     */
     public int getBalance() {
-        return balance;
+        int theBalance = 0;
+        for(Transaction tran: transactions){
+           theBalance = theBalance + tran.getAmount();
+        }
+        return theBalance;
     }
 
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+    
 
     public Date getCreated() {
         return created;
@@ -91,6 +105,10 @@ public class Account {
 
     public List<Transaction> getTransactions() {
         return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
     
     

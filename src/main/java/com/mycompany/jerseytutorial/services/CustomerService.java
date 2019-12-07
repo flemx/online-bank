@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class CustomerService {
     
-      private static Database d = new Database();
-      private static List<Customer> list = d.getCustomersDB();
-       private static List<Account> accounts = d.getAccountDB();
+      private static final Database d = new Database();
+      private static final List<Customer> list = d.getCustomersDB();
+      
       
        public static List<Customer> getAllCustomers() {
         return list;
@@ -35,9 +35,5 @@ public class CustomerService {
         return list.get(id).getAccounts();
     }
     
-    // To be moved to Account services class!!!
-    public static List<Transaction> getAccountTransactions(int accountId) {
-        return accounts.get(1).getTransactions();
-    }
-      
+  
 }

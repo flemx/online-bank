@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class CustomerResource {
     
-     private CommentService CommentService = new CommentService();
+     
 	
     @GET
     public List<Customer> getCustomers(@PathParam("getCustomers") int id) {
@@ -46,12 +46,6 @@ public class CustomerResource {
     	System.out.println("geCustomer..."+id);
 	return CustomerService.geCustomerAccounts(id);
     }
-    
-    @GET
-    @Path("/{customerID}/accounts/{accountNumber}/transactions")
-    public List<Transaction> getAccountTransactions(@PathParam("accountNumber") int id) {
-    	System.out.println("geCustomer..."+id);
-	return CustomerService.getAccountTransactions(id);
-    }
+  
     
 }

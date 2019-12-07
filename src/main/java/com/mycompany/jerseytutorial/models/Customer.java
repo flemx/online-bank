@@ -22,7 +22,7 @@ public class Customer {
     private Date created;
     private String Address;
     private String Email;
-    private List<Account> accounts;
+    private List<Account> tAccounts;
     
     //Constructor - Accounts to be added through setter
     public Customer(int id, String Name, String Address, String Email) {
@@ -31,7 +31,7 @@ public class Customer {
         this.created = new Date();;
         this.Address = Address;
         this.Email = Email;
-        this.accounts = new ArrayList<Account>();
+        this.tAccounts = new ArrayList<Account>();
     }
  
 
@@ -79,11 +79,11 @@ public class Customer {
     }
 
     public List<Account> getAccounts() {
-        return accounts;
+        return tAccounts;
     }
 
     public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
+        this.tAccounts = accounts;
     }
     
     

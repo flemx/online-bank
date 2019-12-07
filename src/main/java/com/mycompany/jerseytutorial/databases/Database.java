@@ -21,6 +21,7 @@ public class Database {
     public static List<Comment> commentDB = new ArrayList<>();
     public static List<Customer> customerDB = new ArrayList<>();
     public static List<Account> accountDB = new ArrayList<>();
+    public static List<Transaction> transactionDB = new ArrayList<>();
     public static boolean init = true;
      
     // Lets create a constructor for the class
@@ -31,15 +32,16 @@ public class Database {
       List<TransType> transactionTypes =  Arrays.asList(TransType.DEPOSIT, TransType.TRANFSER, TransType.WITHDRAW);
           
        // Create customers
-       Customer cus1 = new Customer (1,"Robin O'reily", "Dublin", "robin@email.com");  
-       Customer cus2 = new Customer (2,"Mark Boontjes", "Cork", "mark@email.com");  
-       Customer cus3 = new Customer (3,"Dirk de Vries", "Galway", "dirk@email.com");  
+       Customer cus1 = new Customer (0,"Robin O'reily", "Dublin", "robin@email.com");  
+       Customer cus2 = new Customer (1,"Mark Boontjes", "Cork", "mark@email.com");  
+       Customer cus3 = new Customer (2,"Dirk de Vries", "Galway", "dirk@email.com");  
 
         customerDB.add(cus1);
         customerDB.add(cus2);
         customerDB.add(cus3);
         
-        
+        int accCount = 0;
+        int tranCount = 0;
         
         // Add accounts to customers with transactions
         for(int i = 0; i < customerDB.size(); i++){
@@ -57,22 +59,26 @@ public class Database {
                         balanceSum = balanceSum + tr.getAmount();
                     }
                     Transaction tran = new Transaction(
-                            k,
-                            j,
+                            tranCount,
+                            i+j,
                             randomBalance,
                             transactionTypes.get(k),
                             balanceSum + randomBalance
                     );
                     transactions.add(tran);
+                    transactionDB.add(tran);
+                    tranCount++;
                 }
                 Account acc = new Account(
-                         j, 
+                         accCount, 
                          customerDB.get(i).getId(),
                         "BANK01",
                         accountTypes.get(j),
-                        transactions);
+                        transactions,
+                        0);
                 accounts.add(acc);
                 accountDB.add(acc);
+                accCount++;
             }
             customerDB.get(i).setAccounts(accounts);
         }
@@ -112,6 +118,10 @@ public class Database {
 
     public static List<Account> getAccountDB() {
         return accountDB;
+    }
+
+    public static List<Transaction> getTransactionDB() {
+        return transactionDB;
     }
      
      
