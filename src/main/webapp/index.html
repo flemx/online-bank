@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap" rel="stylesheet"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!--<script src="scripts.js"></script>-->
     </head>
     <body>
@@ -12,25 +13,73 @@
         
         <div id="nav-area">
             <ul id="nav-list">
-                <li class="nav-item"> <a href="">Customers</a> </li>
-                <li class="nav-item"> <a href="">Accounts</a> </li>
-                <li class="nav-item"> <a href="">Transactions</a> </li>
+                <li class="nav-item"> <input id="cust" class="btn" type="button" value="Customers"> </li>
+                <li class="nav-item"> | </li>
+                <li class="nav-item"> <input id="accs" class="btn" type="button" value="Accounts"> </li>
+                <li class="nav-item"> | </li>
+                <li class="nav-item"> <input id="tras" class="btn" type="button" value="Transactions"> </li>
+                <li class="nav-item"> | </li>
+                <li class="nav-item"> <input id="docs" class="btn" type="button" value="Documentation"> </li>
             </ul>
         </div>
+        
+        <hr>
+        
         
         <div id="content-area">
             
             <div id="content">
                 
-                <div id ="customer-data">content goes here</div>
-                                
+                <div id="customer-data">
+                    <p> Choose from some of the above options to display data: </p>
+                    <li> <span class="emphasis">Customers</span> to display a list of customers </li>
+                    <li> <span class="emphasis">Accounts</span> to display the list of accounts </li>
+                    <li> <span class="emphasis">Transactions</span> to show transactions </li>
+                    <li> <span class="emphasis">Documentation</span> to know more about the API</li>
+                </div>
+                          
             </div>
-            
+                
+<!--            <div id="customer-form">
+                
+                <form action="submit">
+                    <div class="field">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                </form>
+
+            </div>-->
+
         </div>
         
         
         <script>
             
+            $(document).ready(function(){
+                const Url = "./api/customers";
+                $('#cust').click(function() {
+                    $.ajax({
+                        url: Url,
+                        type: "GET",
+                        success: function(result){
+                            console.log(typeof result)
+                            console.log(result)
+                            
+                            
+                            document.getElementById("customer-data").innerHTML =
+                                    JSON.stringify(result);
+                        },
+                        error:function(error){
+                            console.log(`Error ${error}`)
+                        }
+                    })
+                })
+            })             
+        </script>
+        
+        
+<!--        <script>
             fetch('./api/customers')
                 .then(
                     function(response) {
@@ -42,8 +91,10 @@
 
                         response.json().then(function(data) {
                             console.log(data);
+                            cusLen = data.length;
+                            console.log(cusLen);
                             pData = JSON.stringify(data);
-                            document.getElementById("customer-data").innerHTML = 
+                            document.getElementById("customer-data").innerHTML =
                                     pData;
                         });
                     }
@@ -51,8 +102,8 @@
                 .catch(function(err) {
                     console.log('Fetch Error' , err);
                 });
-                               
-        </script>
+        </script>-->
         
     </body>
 </html>
+

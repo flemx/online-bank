@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Online Bank Documentation</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    
+    <body>
+        <h1>Online Bank</h1>
+        
+        <div id="nav-area">
+            <ul id="nav-list">
+                <li class="nav-item"> <a href="./index.html">CUSTOMERS</a> </li>
+                <li class="nav-item"><span class="dividor"> | </span></li>
+                <li class="nav-item"> <a href="./index.html">ACCOUNTS</a> </li>
+                <li class="nav-item"><span class="dividor"> | </span></li>
+                <li class="nav-item"> <a href="./index.html">TRANSACTIONS</a> </li>
+                <li class="nav-item"><span class="dividor"> | </span></li>
+                <li class="nav-item"> <a href="./docs.html">DOCUMENTATION</a> </li>
+            </ul>
+        </div>
+        
+        <div id="content-area">
+            
+            <div id="doc-content">
+                
+                
+                <div class="row">
+                    <span class="row-head">1. /api/customers</span>
+                    <p class="row-body">
+                        <span class="body-head">Supported Methods:</span>
+                        <br>
+                        GET
+                    </p>
+                    
+                    <div class="response">
+                        <p class="body-head">Sample Response:</p>
+                        <p class="response-body"> {customer: name}</p>
+                    </div>
+                </div>
+                <div class="row row-bg">
+                    <span class="row-head">1.1 /api/customers/{customer_id}</span>
+                    <p class="row-body">
+                        <span class="body-head">Supported Methods:</span>
+                        <br>
+                        GET, PUT, POST
+                    </p>
+                    
+                    <div class="response">
+                        <p class="body-head">Sample Response:</p>
+                        <p class="response-body"> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="row-head">1.2 /api/customers/{customer_id}/accounts</span>
+                    <p class="row-body">
+                        <span class="body-head">Supported Methods:</span>
+                        <br>
+                        GET, POST, DELETE
+                    </p>
+                    
+                    <div class="response">
+                        <p class="body-head">Sample Response:</p>
+                        <p class="response-body"> </p>
+                    </div>
+                </div>
+                <div class="row row-bg">
+                    <span class="row-head">2. /api/accounts</span>
+                    <p class="row-body">
+                        <span class="body-head">Supported Methods:</span>
+                        <br>
+                        GET
+                    </p>
+                    
+                    <div class="response">
+                        <p class="body-head">Sample Response:</p>
+                        <p class="response-body"> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="row-head">2.1 /api/accounts/{account_id}</span>
+                    <p class="row-body">
+                        <span class="body-head">Supported Methods:</span>
+                        <br>
+                        GET, POST
+                    </p>
+                    
+                    <div class="response">
+                        <p class="body-head">Sample Response:</p>
+                        <p class="response-body"> </p>
+                    </div>
+                </div>
+                <div class="row row-bg">
+                    <span class="row-head">3. /api/transactions</span>
+                    <p class="row-body">
+                        <span class="body-head">Supported Methods:</span>
+                        <br>
+                        GET, POST
+                    </p>
+                    
+                    <div class="response">
+                        <p class="body-head">Sample Response:</p>
+                        <p class="response-body"> </p>
+                    </div>
+                </div>
+               
+                
+                
+                
+                
+                
+                
+                <div>
+                    
+                    <h3>Javscript</h3>
+                    <p>0 	UNSENT 	Client has been created. open() not called yet.
+1 	OPENED 	open() has been called.
+2 	HEADERS_RECEIVED 	send() has been called, and headers and status are available.
+3 	LOADING 	Downloading; responseText holds partial data.
+4 	DONE 	The operation is complete.</p>  
+                </div>
+                                
+            </div>
+        </div>
+        
+    </body>
+</html>
