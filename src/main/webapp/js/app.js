@@ -107,6 +107,7 @@ function showCustomerDetailAccounts(data){
         `};
 
     setMainCard(cardContent);
+    document.querySelector('.customer-table-link').className = '';
 }
 
 
@@ -126,6 +127,7 @@ function showCustomerDetail(data){
         `};
 
     setMainCard(cardContent);
+    document.querySelector('.customer-table-link').className = '';
 }
 
 
@@ -133,10 +135,21 @@ function showCustomerDetail(data){
 
 /* Generate table with all customers */
 function showAllCustomers(data){
+
+
+    let titleText =   `
+    <div class="search-container">
+        <input type="text" class="searchBar" onkeyup="myFunction()" placeholder="Search for customers.." title="Type in a name">
+        <button class="btn waves-effect waves-light main-add-button"  style="background-color:#8588d6;" onclick="createCustomer()">  Add Customer
+        <i class="material-icons left small">add</i>
+        </button>
+    </div>
+        `
+
     //inner-container
     let cardContent = { content : customerTable(data),
         title : 'Customers',
-        titleText : `<p> Show all customers </p>`};
+        titleText : titleText};
 
     setMainCard(cardContent);
 }

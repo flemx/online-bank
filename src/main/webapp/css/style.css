@@ -28,7 +28,24 @@
     margin: 2% !important;
 }
 
+.searchBar{
+ background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding-left: 50px !important;
+  width: 40% !important;
+  border-bottom: 0px solid #42448ec9 !important;
+  margin-top: 1% !important;
+}
+.searchBar:focus{
+    border-bottom: 1px solid #42448ec9 !important;
+}
 
+.search-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 /* Tables */
 
@@ -39,6 +56,11 @@
 .customer-table-link:hover,.customeraccount-table-link:hover{
     cursor: pointer;
 }
+
+.main-add-button{
+    margin-right: 2%;
+}
+
 
 
 /*
