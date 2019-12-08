@@ -5,9 +5,9 @@
 
 // The url endpoints
 const endpoints = {
-    customers : 'http://localhost:49000/api/customers',
-    customer : id => {return `http://localhost:49000/api/customers/${id}`},
-    accounts : 'http://localhost:49000/api/accounts'
+    customers : './api/customers',
+    customer : id => {return `./api/customers/${id}`},
+    accounts : './api/accounts'
 }
 
 
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     //Initialising modals
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
+    let modalElems = document.querySelectorAll('.modal');
+    var modalInstances = M.Modal.init(modalElems);
 
     //Load customers
     getRequests(endpoints.customers, showAllCustomers)
@@ -91,6 +91,24 @@ function getRequests(url, func){
 
 
 /*---------------- Functions to manipulate html elements  ------------*/
+
+
+function showError(data){
+    console.log(data);
+    let cardContent = { content : "",
+        title : '',
+        titleText : `
+        <div class="main-404">
+            <div class="fof-404">
+                    <h1>Error 404</h1>
+            </div>
+        </div>
+        `};
+
+    setMainCard(cardContent);
+}
+
+
 
 
 
@@ -228,7 +246,7 @@ function accountTable(data){
 // Return a table based on theader and tbody input
 function generateTable(theaders, tablerows){
         const table = ` 
-          <table class="highlight">
+          <table class="highlight responsive-table">
               <thead>
                 <tr>
                     ${theaders}

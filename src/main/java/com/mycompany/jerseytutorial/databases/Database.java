@@ -40,7 +40,7 @@ public class Database {
         customerDB.add(cus2);
         customerDB.add(cus3);
         
-        int accCount = 0;
+        int accCount = 372860;
         int tranCount = 0;
         
         // Add accounts to customers with transactions
@@ -53,6 +53,7 @@ public class Database {
                 //Generate3 transactions
                 for(int k = 0; k < 3; k++){
                     int randomBalance = new Random().nextInt();
+                    randomBalance = (int) randomBalance / 10000;
                     int balanceSum = 0;
                     
                     for(Transaction tr : transactions){
@@ -60,7 +61,7 @@ public class Database {
                     }
                     Transaction tran = new Transaction(
                             tranCount,
-                            i+j,
+                            accCount,
                             randomBalance,
                             transactionTypes.get(k),
                             balanceSum + randomBalance

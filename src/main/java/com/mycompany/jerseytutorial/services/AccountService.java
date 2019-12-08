@@ -36,7 +36,12 @@ public class AccountService {
       * @return 
       */
      public static Account getAccount(int accountNumber){
-         return list.get(accountNumber);
+         for(Account a: list){
+             if(a.getAccountNumber() == accountNumber){
+                 return a;
+             }
+         }
+         return null;
      }
      
     
@@ -45,8 +50,13 @@ public class AccountService {
       * @param accountId
       * @return 
       */
-    public static List<Transaction> getAccountTransactions(int accountId) {
-        return list.get(accountId).getTransactions();
+    public static List<Transaction> getAccountTransactions(int accountNumber) {
+        try{
+             return getAccount(accountNumber).getTransactions();
+        }catch(Exception e){
+            System.out.println(e);
+            return null;
+        }
     }
       
     

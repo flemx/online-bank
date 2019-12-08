@@ -12,7 +12,7 @@
 
 
 .nav-content ul{
-    max-width: 600px;
+    max-width: 500px;
     display: flex;
     flex-direction: row;
 }
@@ -46,6 +46,12 @@
     flex-direction: row;
     justify-content: space-between;
 }
+@media only screen and (max-width: 600px) {
+    .search-container{
+        flex-direction: column;
+    }
+  }
+
 
 /* Tables */
 
@@ -62,7 +68,7 @@
 }
 
 
-/* Add new Modal  */
+/* Add new form Modal  */
 .modal-content{
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
@@ -74,6 +80,48 @@
     text-align: center;
 }
 
+
+
+/* 404 error page */
+
+
+.main-404{
+    display: table;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+}
+
+.fof-404{
+	  display: table-cell;
+	  vertical-align: middle;
+}
+
+.fof-404 h1{
+	  font-size: 50px;
+	  display: inline-block;
+	  padding-right: 12px;
+	  animation: type .5s alternate infinite;
+}
+
+@keyframes type{
+	  from{box-shadow: inset -3px 0px 0px #888;}
+	  to{box-shadow: inset -3px 0px 0px transparent;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------  Archived CSS ------------------- */
 
 
 

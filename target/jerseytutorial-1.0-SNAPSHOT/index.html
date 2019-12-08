@@ -10,6 +10,8 @@
         <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
         <!--Custom CSS-->
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!--Tell browser to optimise for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
        
@@ -22,7 +24,7 @@
                 <li class="tab" onclick="customerListener()"><a class="active" href="#customers">Customers</a></li>
                 <li class="tab" onclick="accountListener()"><a href="#accounts">Accounts</a></li>
                 <li class="tab"><a href="#transactions">Transactions</a></li>
-                <li class="tab"><a href="#documentation">API Documentation</a></li>
+                <li class="tab"><a href="#documentation">API</a></li>
               </ul>
             </div>
           </nav>
@@ -64,7 +66,7 @@
           </template>
 
 
-        <!-- Adding customer Modal  -->
+        <!-- New customer form Modal  -->
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <h4>Add new Customer</h4>

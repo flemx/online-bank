@@ -26,12 +26,21 @@ public class CustomerService {
 
         
     public static Customer geCustomer(int id) {
-        Customer cus = list.get(id);
-        return cus;
+        for(Customer c: list){
+             if(c.getId() == id){
+                 return c;
+             }
+         }
+         return null;
     }
     
     public static List<Account> geCustomerAccounts(int id) {
-        return list.get(id).getAccounts();
+        try{
+             return geCustomer(id).getAccounts();
+        }catch(Exception e){
+            System.out.println(e);
+            return null;
+        }        
     }
     
   

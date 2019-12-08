@@ -35,7 +35,13 @@ public class TransactionService {
      * @return 
      */
     public static Transaction getTransaction(int id){
-        return list.get(id);
+         for(Transaction t: list){
+             if(t.getId() == id){
+                 return t;
+             }
+         }
+         return null;
     }
+        
     
 }
