@@ -19,8 +19,7 @@ public class CustomerService {
     
       private static final Database d = new Database();
       private static final List<Customer> list = d.getCustomersDB();
-      
-      
+     
        public static List<Customer> getAllCustomers() {
         return list;
     }

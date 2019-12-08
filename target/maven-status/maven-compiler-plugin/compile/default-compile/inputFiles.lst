@@ -3,7 +3,9 @@ C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytu
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\databases\Database.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\types\AccountType.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\types\TransType.java
+C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\resources\TransactionResource.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\services\MessageService.java
+C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\resources\AccountResource.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\models\Comment.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\models\Transaction.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\models\Message.java
@@ -12,6 +14,7 @@ C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytu
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\services\AccountService.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\Temperature.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\services\CommentService.java
+C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\services\TransactionService.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\models\Account.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\services\CustomerService.java
 C:\Users\damie\Documents\school\online-bank\src\main\java\com\mycompany\jerseytutorial\ProxyWeather.java

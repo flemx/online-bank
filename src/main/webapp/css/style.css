@@ -1,0 +1,136 @@
+
+
+
+
+/* Navigation  */
+
+.nav-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.nav-content ul{
+    max-width: 600px;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-extended{
+    background: linear-gradient(135deg, #42448e 0%,#7a7fff 50%,#f4e1c9 100%);
+}
+
+
+/* Main container card */
+
+.main-container{
+    margin: 2% !important;
+}
+
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05-Dec-2019, 21:05:06
+    Author     : tonyennis
+*/
+
+/*Documentation Styling *//*
+
+#doc-content {
+    text-align: left;
+    padding-left: 2%;
+    padding-right: 5%;
+}
+
+.row {
+    width: 100%;
+    padding-left: 2%;
+    padding-top: 10px;
+/*    border: 1px solid black;*//*
+}
+
+.row-bg {
+    background-color: lightgrey;
+}
+
+.row-head {
+    font-weight: bold;
+}
+
+.row-body {
+    margin-left: 5%;
+}
+
+.body-head {
+    font-size:0.8em;
+    font-weight:bold;
+}
+
+.response {
+    width: 600px;
+    border: 2px solid rosybrown;
+    padding: 20px;
+    margin-left: 5%;
+    margin-bottom: 10px;
+}
+
+/*Main page styling*/
+/*
+body {
+    font-family: 'Sulphur Point', sans-serif;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+#nav-list {
+    padding: 0;
+    list-style-type: none;
+    display: block;
+}
+.nav-item {
+    list-style-type: none;
+    text-decoration: none;
+    display: inline;
+}
+.btn {
+    text-decoration: none;
+}
+.dividor {
+    color: darkslategrey;
+}
+.emphasis {
+    font-style: italic;
+    font-weight: bold;
+}
+a {
+    text-decoration: none;
+    letter-spacing: 0.2em;
+}
+a:hover {
+    color:seagreen;
+    text-decoration: underline;
+}
+
+*/
+/*
+#content {
+    width: 74%;
+    display: inline;
+    float:left;
+    border: 1px solid black;
+}
+
+#customer-form {
+    margin-left: 1%;
+    width: 24%;
+    float: left;
+    display: inline;
+    border: 1px solid black;
+}*/
+
+

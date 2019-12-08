@@ -3,107 +3,73 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link href="https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap" rel="stylesheet"> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!--<script src="scripts.js"></script>-->
+
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+        <!--Custom CSS-->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-        <h1>Online Bank</h1>
-        
-        <div id="nav-area">
-            <ul id="nav-list">
-                <li class="nav-item"> <input id="cust" class="btn" type="button" value="Customers"> </li>
-                <li class="nav-item"> | </li>
-                <li class="nav-item"> <input id="accs" class="btn" type="button" value="Accounts"> </li>
-                <li class="nav-item"> | </li>
-                <li class="nav-item"> <input id="tras" class="btn" type="button" value="Transactions"> </li>
-                <li class="nav-item"> | </li>
-                <li class="nav-item"> <input id="docs" class="btn" type="button" value="Documentation"> </li>
-            </ul>
-        </div>
-        
-        <hr>
-        
-        
-        <div id="content-area">
-            
-            <div id="content">
-                
-                <div id="customer-data">
-                    <p> Choose from some of the above options to display data: </p>
-                    <li> <span class="emphasis">Customers</span> to display a list of customers </li>
-                    <li> <span class="emphasis">Accounts</span> to display the list of accounts </li>
-                    <li> <span class="emphasis">Transactions</span> to show transactions </li>
-                    <li> <span class="emphasis">Documentation</span> to know more about the API</li>
-                </div>
-                          
+       
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo">Online Bank</a>
             </div>
-                
-<!--            <div id="customer-form">
-                
-                <form action="submit">
-                    <div class="field">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
+            <div class="nav-content">
+              <ul class="tabs tabs-transparent">
+                <li class="tab"><a class="active" href="#customers">Customers</a></li>
+                <li class="tab"><a href="#accounts">Accounts</a></li>
+                <li class="tab"><a href="#transactions">Transactions</a></li>
+                <li class="tab"><a href="#documentation">API Documentation</a></li>
+              </ul>
+            </div>
+          </nav>
+        
+
+          <!-- Tags used to display the contents of the tabs  -->
+          <div id="customers" class="col s12">
+          </div>
+          <div id="accounts" class="col s12">
+          </div>
+          <div id="transactions" class="col s12">
+          </div>    
+          <div id="documentation" class="col s12">
+          </div>
+
+
+
+
+
+          <!-- Container card template -->
+          <template class="main-container-template">
+                <div class="row main-container">
+                    <div class="col s12 m12 l12">
+                        <div id="button-trigger" class="card card card-default scrollspy">
+                        <div class="card-content">
+                            <h4 class="card-title  main-card-title"> <!-- ADD TITLE HERE --> </h4>
+                            <div class="row">
+                            <div class="col s12 main-card-title-text">
+                                    <!-- ADD TITLE DESCRIPTION HERE -->
+                            </div>
+                            <div class="col s12 main-card-content">
+                                    <!-- ADD MAIN CONTENT HERE -->
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                </form>
+                </div>
+          </template>
 
-            </div>-->
 
-        </div>
-        
-        
-        <script>
-            
-            $(document).ready(function(){
-                const Url = "./api/customers";
-                $('#cust').click(function() {
-                    $.ajax({
-                        url: Url,
-                        type: "GET",
-                        success: function(result){
-                            console.log(typeof result)
-                            console.log(result)
-                            
-                            
-                            document.getElementById("customer-data").innerHTML =
-                                    JSON.stringify(result);
-                        },
-                        error:function(error){
-                            console.log(`Error ${error}`)
-                        }
-                    })
-                })
-            })             
-        </script>
-        
-        
-<!--        <script>
-            fetch('./api/customers')
-                .then(
-                    function(response) {
-                        if (response.status !== 200) {
-                            console.log('Looks like a problem chief. Status \n\
-                              Code: ' + response.status);
-                            return;
-                        }
 
-                        response.json().then(function(data) {
-                            console.log(data);
-                            cusLen = data.length;
-                            console.log(cusLen);
-                            pData = JSON.stringify(data);
-                            document.getElementById("customer-data").innerHTML =
-                                    pData;
-                        });
-                    }
-                )
-                .catch(function(err) {
-                    console.log('Fetch Error' , err);
-                });
-        </script>-->
-        
+
+
+    <!--JavaScript files-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/app.js"></script>
     </body>
 </html>
 

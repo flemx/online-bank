@@ -124,9 +124,10 @@
                         <port>49000</port>
                     </httpConnector>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
-                    <webAppConfig>
-                        <!--defaultsDescriptor></defaultsDescriptor-->
-                    </webAppConfig>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+                    <contextXml>${project.basedir}/jetty/jetty-config.xml</contextXml>
                 </configuration>
             </plugin>
         </plugins>
