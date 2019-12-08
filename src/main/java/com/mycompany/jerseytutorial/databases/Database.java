@@ -75,7 +75,8 @@ public class Database {
                         "BANK01",
                         accountTypes.get(j),
                         transactions,
-                        0);
+                        0,
+                        customerDB.get(i).getName());
                 accounts.add(acc);
                 accountDB.add(acc);
                 accCount++;

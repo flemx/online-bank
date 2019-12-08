@@ -29,6 +29,18 @@
 }
 
 
+
+/* Tables */
+
+.customer-table-link,.customeraccount-table-link{
+    text-decoration: underline;
+    color: #6165cd;
+}
+.table-link:hover,.customeraccount-table-link:hover{
+    cursor: pointer;
+}
+
+
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates

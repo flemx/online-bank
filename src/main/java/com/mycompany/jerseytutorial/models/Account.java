@@ -17,6 +17,7 @@ public class Account {
     
     private int accountNumber;
     private int customerId;
+    private String customerName;
     private String sortCode;
     private AccountType accountType;
     private int balance;
@@ -24,13 +25,14 @@ public class Account {
     private List<Transaction> transactions;
 
     //Constructor - Transactions to be added through setter
-    public Account(int accountNumber, int customerId, String sortCode, AccountType accountType, List<Transaction> transactions, int balance) {
+    public Account(int accountNumber, int customerId, String sortCode, AccountType accountType, List<Transaction> transactions, int balance, String customerName) {
         this.accountNumber = accountNumber;
         this.customerId = customerId;
         this.sortCode = sortCode;
         this.accountType = accountType;
         this.created = new Date();
         this.transactions = transactions;
+        this.customerName = customerName;
         
         // Generate balance from sum of transactions
         for(Transaction tran: transactions){
@@ -109,6 +111,14 @@ public class Account {
 
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
     
     

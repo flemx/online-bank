@@ -18,9 +18,9 @@
               <a href="#" class="brand-logo">Online Bank</a>
             </div>
             <div class="nav-content">
-              <ul class="tabs tabs-transparent">
-                <li class="tab"><a class="active" href="#customers">Customers</a></li>
-                <li class="tab"><a href="#accounts">Accounts</a></li>
+              <ul class="tabs tabs-transparent main-nav-buttons">
+                <li class="tab" onclick="customerListener()"><a class="active" href="#customers">Customers</a></li>
+                <li class="tab" onclick="accountListener()"><a href="#accounts">Accounts</a></li>
                 <li class="tab"><a href="#transactions">Transactions</a></li>
                 <li class="tab"><a href="#documentation">API Documentation</a></li>
               </ul>
@@ -45,7 +45,7 @@
           <!-- Container card template -->
           <template class="main-container-template">
                 <div class="row main-container">
-                    <div class="col s12 m12 l12">
+                    <div class="col s12 m12 l12 main-inner-container">
                         <div id="button-trigger" class="card card card-default scrollspy">
                         <div class="card-content">
                             <h4 class="card-title  main-card-title"> <!-- ADD TITLE HERE --> </h4>
