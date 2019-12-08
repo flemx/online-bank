@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-
     //Load customers
     getRequests(endpoints.customers, showAllCustomers)
     document.getElementById('customers').appendChild(mainCard);
@@ -41,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if(event.target.className === 'customeraccount-table-link'){
             //debugger;
-            getRequests(endpoints.customer(event.target.parentElement.id), showCustomerDetailAccounts);
+            getRequests(endpoints.customer(event.target.id), showCustomerDetailAccounts);
         }
 
         
@@ -134,7 +133,7 @@ function showCustomerDetail(data){
 
 /* Generate table with all customers */
 function showAllCustomers(data){
-    
+    //inner-container
     let cardContent = { content : customerTable(data),
         title : 'Customers',
         titleText : `<p> Show all customers </p>`};
@@ -199,7 +198,7 @@ function accountTable(data){
                 <td> ${th.accountNumber} </td> 
                 <td class="account-table-link"> ${th.accountType} </td>
                 <td> € ${th.balance} </td>
-                <td class="customeraccount-table-link"> ${th.customerName} </td>
+                <td class="customeraccount-table-link" id="${th.customerId}"> ${th.customerName} </td>
                 <td> ${th.sortCode} </td> 
                 <td> ${th.created} </td> 
             </tr>
@@ -237,4 +236,5 @@ function setMainCard(data){
     mainCard.querySelector('.main-card-title-text').innerHTML = data.titleText;
     // Use template string
     mainCard.querySelector('.main-card-content').innerHTML = data.content
+
 }
