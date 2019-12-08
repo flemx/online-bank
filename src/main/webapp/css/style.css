@@ -62,6 +62,20 @@
 }
 
 
+/* Add new Modal  */
+.modal-content{
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.modal-content h4{
+    margin-top: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+
 
 /*
 To change this license header, choose License Headers in Project Properties.

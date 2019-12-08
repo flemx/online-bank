@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
         M.Tabs.init(tabs[i]);
     }
 
+    //Initialising modals
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
 
     //Load customers
     getRequests(endpoints.customers, showAllCustomers)
@@ -140,7 +143,7 @@ function showAllCustomers(data){
     let titleText =   `
     <div class="search-container">
         <input type="text" class="searchBar" onkeyup="myFunction()" placeholder="Search for customers.." title="Type in a name">
-        <button class="btn waves-effect waves-light main-add-button"  style="background-color:#8588d6;" onclick="createCustomer()">  Add Customer
+        <button  data-target="modal1" class="btn waves-effect waves-light main-add-button modal-trigger"  style="background-color:#8588d6;" onclick="createCustomer()">  Add Customer
         <i class="material-icons left small">add</i>
         </button>
     </div>
