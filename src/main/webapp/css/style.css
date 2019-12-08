@@ -55,11 +55,11 @@
 
 /* Tables */
 
-.customer-table-link,.customeraccount-table-link{
+.customer-table-link,.customeraccount-table-link,.account-table-link,.accountcustomer-table-link{
     text-decoration: underline;
     color: #6165cd;
 }
-.customer-table-link:hover,.customeraccount-table-link:hover{
+.customer-table-link:hover,.customeraccount-table-link:hover,.account-table-link:hover,.accountcustomer-table-link:hover{
     cursor: pointer;
 }
 
@@ -111,6 +111,22 @@
 
 
 
+/* Record detail page */
+
+/* .sub-nav-content{
+    padding-top: 3% !important;
+}
+.sub-nav-content a{
+    color: #585bbb !important;
+    font-weight: 600;
+}
+.sub-nav-content .indicator{
+    background-color: #585bbb !important;
+} */
+
+.related-list-container{
+    margin-top: 3%;
+}
 
 
 

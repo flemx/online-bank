@@ -7,12 +7,47 @@
 const endpoints = {
     customers : './api/customers',
     customer : id => {return `./api/customers/${id}`},
-    accounts : './api/accounts'
+    accounts : './api/accounts',
+    account : id => {return `./api/accounts/${id}`}
 }
 
 
 // The Main content card
 const mainCard = document.querySelector('.main-container-template').content.querySelector('.main-container');;
+
+
+// Related list html element
+function relatedLists(icon, title, content) { 
+return ` 
+    <ul class="collapsible related-list-container">
+        <li>
+        <div class="collapsible-header">
+            <i class="material-icons" style="margin-right:5%;">${icon}</i>
+                ${title}
+            <i class="material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="collapsible-body">
+            <!-- CONTENT HERE -->
+            ${content}
+        </div>
+        </li>
+    </ul>
+    `
+}
+
+
+
+function detailGoback(onclick){
+    return `
+        <br>
+        <button class="btn waves-effect waves-light" style="background-color:#8588d6;" onclick="${onclick}">go back
+        <i class="material-icons left small">arrow_back</i>
+        </button>
+        <br>
+        <br>
+`
+}
+
 
 
 
@@ -31,20 +66,31 @@ document.addEventListener('DOMContentLoaded', function() {
     let modalElems = document.querySelectorAll('.modal');
     var modalInstances = M.Modal.init(modalElems);
 
+
+
     //Load customers
     getRequests(endpoints.customers, showAllCustomers)
     document.getElementById('customers').appendChild(mainCard);
 
     //Add event listeners to table urls
     document.querySelector('.card-content').addEventListener("click", event => {
-        if(event.target.className === 'customer-table-link'){
-            //debugger;
+
+        switch(event.target.className) {
+            case 'customer-table-link':
             getRequests(endpoints.customer(event.target.parentElement.id), showCustomerDetail);
-        }
-        if(event.target.className === 'customeraccount-table-link'){
-            //debugger;
+              break;
+            case 'customeraccount-table-link':
             getRequests(endpoints.customer(event.target.id), showCustomerDetailAccounts);
-        }
+              break;
+            case 'account-table-link':
+            getRequests(endpoints.account(event.target.parentElement.id), showAccountDetail);
+               break;
+            case 'accountcustomer-table-link':
+            getRequests(endpoints.account(event.target.parentElement.id), showAccountDetailCustomer);
+                break;
+            default:
+              // code block  
+          }
 
         
     });
@@ -69,7 +115,7 @@ function customerListener(){
 
 // Run get requests and execute the result in the function given
 function getRequests(url, func){
-    console.log("getRequests run");
+    console.log(`Executing GET request to: ${url}`);
     fetch(url,{
         mode: 'no-cors',
         method : 'GET',
@@ -110,25 +156,59 @@ function showError(){
 
 
 
+// Set related list on detail page
+
+function createRelatedList(data){
+    
+    let el = document.createElement('div');
+    el.innerHTML = relatedLists('mail_outline', 'Show Accounts', customerAccounts(data.accounts));
+    mainCard.querySelector('.main-card-content').appendChild(el);
+    //Initialise collapse effect
+    M.Collapsible.init(document.querySelectorAll('.collapsible'));
+}
 
 
-// >>>>> See how to optimise below functions into one
+// Return details of single Account from customer detail page
+function showAccountDetailCustomer(data){
+    console.log(data);
+    let cardContent = { content : customerAccounts([data]),
+        title : 'Account Details',
+        titleText : detailGoback(`getRequests(endpoints.customer(${data.customerId}), showCustomerDetail)`)
+    };
+
+    setMainCard(cardContent);
+    document.querySelector('.accountcustomer-table-link').className = '';
+}
+
+
+
+// Return details of single Account
+function showAccountDetail(data){
+    console.log(data);
+    let cardContent = { content : accountsPage([data]),
+        title : 'Account Details',
+        titleText : detailGoback('getRequests(endpoints.accounts, showAllAccounts)')
+    };
+
+    setMainCard(cardContent);
+    document.querySelector('.account-table-link').className = '';
+}
+
+
+
+
 // Return details of single customer from accounts page
 function showCustomerDetailAccounts(data){
     console.log(data);
     let cardContent = { content : customerTable([data]),
         title : 'Customer Details',
-        titleText : `
-        <br>
-        <button class="btn waves-effect waves-light" style="background-color:#8588d6;" onclick="getRequests(endpoints.accounts, showAllAccounts)">go back
-        <i class="material-icons left small">arrow_back</i>
-        </button>
-        <br>
-      <br>
-        `};
+        titleText : detailGoback('getRequests(endpoints.accounts, showAllAccounts)')
+        };
 
     setMainCard(cardContent);
     document.querySelector('.customer-table-link').className = '';
+
+    createRelatedList(data);
 }
 
 
@@ -138,19 +218,36 @@ function showCustomerDetail(data){
     console.log(data);
     let cardContent = { content : customerTable([data]),
         title : 'Customer Details',
-        titleText : `
-        <br>
-        <button class="btn waves-effect waves-light" id="go-back-btn" style="background-color:#8588d6;" onclick="getRequests(endpoints.customers, showAllCustomers)">go back
-        <i class="material-icons left small">arrow_back</i>
-        </button>
-        <br>
-      <br>
-        `};
+        titleText : detailGoback('getRequests(endpoints.customers, showAllCustomers)')
+       };
 
     setMainCard(cardContent);
     document.querySelector('.customer-table-link').className = '';
+    
+    createRelatedList(data);
 }
 
+
+/* Generate table with all transactions */
+function showAllTransaction(data){
+
+
+    let titleText =   `
+    <div class="search-container">
+        <input type="text" class="searchBar" onkeyup="myFunction()" placeholder="Search for transactions.." title="Type in a name">
+        <button  data-target="modal1" class="btn waves-effect waves-light main-add-button modal-trigger"  style="background-color:#8588d6;">  Add Customer
+        <i class="material-icons left small">add</i>
+        </button>
+    </div>
+        `
+
+    //inner-container
+    let cardContent = { content : customerTable(data),
+        title : 'Customers',
+        titleText : titleText};
+
+    setMainCard(cardContent);
+}
 
 
 
@@ -178,7 +275,7 @@ function showAllCustomers(data){
 
 /* Generate table with all accounts */
 function showAllAccounts(data){
-    let cardContent = { content : accountTable(data),
+    let cardContent = { content : accountsPage(data),
         title : 'Accounts',
         titleText : `
         <div class="search-container">
@@ -191,6 +288,35 @@ function showAllAccounts(data){
     
     setMainCard(cardContent);
 }
+
+
+// Return a table with with transactions data
+function customerTable(data){
+
+    const theaders = `
+    <th>ID</th>
+    <th>amount</th>
+    <th>type</th>
+    <th>accountNumber</th>
+    <th>accountNumber</th>
+    <th>type<th>`;
+
+    let tablerows = ``;
+
+    for(let th of data){
+        tablerows = tablerows + `
+            <tr id="${th.id}">
+                <td> ${th.id} </td> 
+                <td class="customer-table-link"> ${th.name} </td>
+                <td> ${th.address} </td>
+                <td> ${th.email} </td> 
+                <td> ${th.created} </td> 
+            </tr>
+            `;
+    }
+    return generateTable(theaders, tablerows);
+}
+
 
 
 // Return a table with with customer data
@@ -222,7 +348,7 @@ function customerTable(data){
 
 
 // Return a table with with account data
-function accountTable(data){
+function accountTable(data, classname){
 
     const theaders = `
     <th>Number</th>
@@ -237,8 +363,8 @@ function accountTable(data){
     for(let th of data){
         tablerows = tablerows + `
             <tr id="${th.accountNumber}">
-                <td> ${th.accountNumber} </td> 
-                <td class="account-table-link"> ${th.accountType} </td>
+                <td  class="${classname}"> ${th.accountNumber} </td> 
+                <td> ${th.accountType} </td>
                 <td> € ${th.balance} </td>
                 <td class="customeraccount-table-link" id="${th.customerId}"> ${th.customerName} </td>
                 <td> ${th.sortCode} </td> 
@@ -247,6 +373,14 @@ function accountTable(data){
             `;
     }
     return generateTable(theaders, tablerows);
+}
+
+// Below functions called based on main accounts page or related list
+function accountsPage(data){
+    return accountTable(data,'account-table-link');
+}
+function customerAccounts(data){
+    return accountTable(data,'accountcustomer-table-link');
 }
 
 

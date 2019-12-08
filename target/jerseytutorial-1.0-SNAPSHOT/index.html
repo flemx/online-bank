@@ -1,100 +1,147 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
-        <!--Custom CSS-->
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <!--Tell browser to optimise for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-       
-        <nav class="nav-extended">
-            <div class="nav-wrapper">
-              <a href="#" class="brand-logo">Online Bank</a>
-            </div>
-            <div class="nav-content">
-              <ul class="tabs tabs-transparent main-nav-buttons">
+<head>
+    <title>Start Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!--Tell browser to optimise for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Online Bank</a>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent main-nav-buttons">
                 <li class="tab" onclick="customerListener()"><a class="active" href="#customers">Customers</a></li>
                 <li class="tab" onclick="accountListener()"><a href="#accounts">Accounts</a></li>
                 <li class="tab"><a href="#transactions">Transactions</a></li>
                 <li class="tab"><a href="#documentation">API</a></li>
-              </ul>
-            </div>
-          </nav>
-        
+            </ul>
+        </div>
+    </nav>
 
-          <!-- Tags used to display the contents of the tabs  -->
-          <div id="customers" class="col s12">
-          </div>
-          <div id="accounts" class="col s12">
-          </div>
-          <div id="transactions" class="col s12">
-          </div>    
-          <div id="documentation" class="col s12">
-          </div>
+    <!-- Tags used to display the contents of the tabs  -->
+    <div id="customers" class="col s12">
+    </div>
+    <div id="accounts" class="col s12">
+    </div>
+    <div id="transactions" class="col s12">
+    </div>
+    <div id="documentation" class="col s12">
 
-
-
-
-
-          <!-- Container card template -->
-          <template class="main-container-template">
-                <div class="row main-container">
-                    <div class="col s12 m12 l12 main-inner-container">
-                        <div id="button-trigger" class="card card card-default scrollspy">
-                        <div class="card-content">
-                            <h4 class="card-title  main-card-title"> <!-- ADD TITLE HERE --> </h4>
-                            <div class="row">
+        <div class="row main-container" style="margin-top: 0% !important;">
+            <div class="col s12 m12 l12 main-inner-container">
+                <div id="button-trigger" class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <h4 class="card-title  main-card-title">Customer Details</h4>
+                        <div class="row">
                             <div class="col s12 main-card-title-text">
-                                    <!-- ADD TITLE DESCRIPTION HERE -->
+                                <br>
+                                <button class="btn waves-effect waves-light" id="go-back-btn" style="background-color:#8588d6;" onclick="getRequests(endpoints.customers, showAllCustomers)">go back
+                                    <i class="material-icons left small">arrow_back</i>
+                                </button>
+                                <br>
+                                <br>
                             </div>
                             <div class="col s12 main-card-content">
-                                    <!-- ADD MAIN CONTENT HERE -->
+                                <table class="highlight responsive-table">
+                                    <thead>
+                                        <tr>
+
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Email</th>
+                                            <th>Created</th>
+                                            <th>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr id="0">
+                                            <td> 0 </td>
+                                            <td class=""> Robin O'reily </td>
+                                            <td> Dublin </td>
+                                            <td> robin@email.com </td>
+                                            <td> 2019-12-08T15:11:34.521 </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                           
+                                
+                            
+
                             </div>
-                            </div>
-                        </div>
                         </div>
                     </div>
                 </div>
-          </template>
+            </div>
+        </div>
 
+    </div>
 
-        <!-- New customer form Modal  -->
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <h4>Add new Customer</h4>
-                <div class="row modal-content">
-                    <form class="col s12">
+    <!-- Container card template -->
+    <template class="main-container-template">
+        <div class="row main-container">
+            <div class="col s12 m12 l12 main-inner-container">
+                <div id="button-trigger" class="card card card-default scrollspy">
+                    <div class="card-content">
+                        <h4 class="card-title  main-card-title"> <!-- ADD TITLE HERE --> </h4>
                         <div class="row">
-                            <div class="input-field col m6 s12">
-                                <input id="first_name" type="text" class="validate">
-                                <label for="first_name">First Name</label>
+                            <div class="col s12 main-card-title-text">
+                                <!-- ADD TITLE DESCRIPTION HERE -->
                             </div>
-                            <div class="input-field col m6 s12">
-                                <input id="last_name" type="text" class="validate">
-                                <label for="last_name">Last Name</label>
+                            <div class="col s12 main-card-content">
+                                <!-- ADD MAIN CONTENT HERE -->
                             </div>
                         </div>
-                        <div class="row">
-                                <div class="input-field col m6 s12">
-                                    <input id="email_input" type="email" class="validate">
-                                    <label for="email_input">Email</label>
-                                </div>
-                                <div class="input-field col m6 s12">
-                                    <input id="address_input" type="text" class="validate">
-                                    <label for="address_input">Address</label>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 
-                        
-                        <!--
+    <!-- New customer form Modal  -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Add new Customer</h4>
+            <div class="row modal-content">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col m6 s12">
+                            <input id="first_name" type="text" class="validate">
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col m6 s12">
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col m6 s12">
+                            <input id="email_input" type="email" class="validate">
+                            <label for="email_input">Email</label>
+                        </div>
+                        <div class="input-field col m6 s12">
+                            <input id="address_input" type="text" class="validate">
+                            <label for="address_input">Address</label>
+                        </div>
+                    </div>
+
+                    <!--
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="budget">Budget</label>
@@ -111,52 +158,52 @@
                         </div>
                         -->
 
-                        <div class="row">
-                            <div class="col m12">
-                                <p class="right-align"> <button  action="submit" data-target="modal1" class="btn waves-effect waves-light"  style="background-color:#8588d6;" onclick=""> submit
-                                        <i class="material-icons save small">add</i>
-                                        </button></p>
-                            </div>
+                    <div class="row">
+                        <div class="col m12">
+                            <p class="right-align">
+                                <button action="submit" data-target="modal1" class="btn waves-effect waves-light" style="background-color:#8588d6;" onclick=""> submit
+                                    <i class="material-icons save small">add</i>
+                                </button>
+                            </p>
                         </div>
-                    </form>
                     </div>
+                </form>
             </div>
         </div>
-    
+    </div>
 
-         <!-- New account form Modal  -->
-         <div id="modal2" class="modal">
-            <div class="modal-content">
-                <h4>Add new Account</h4>
-                <div class="row modal-content">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col m6 s12">
-                                <input id="customer_name" type="text" class="validate">
-                                <label for="customer_name">Customer name</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                                <input id="customer_id" type="text" class="validate">
-                                <label for="customer_id">Customer ID</label>
-                            </div>
+    <!-- New account form Modal  -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>Add new Account</h4>
+            <div class="row modal-content">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col m6 s12">
+                            <input id="customer_name" type="text" class="validate">
+                            <label for="customer_name">Customer name</label>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label for="type">Account type</label>
-                                <br/>
-                            </div>
-                            <div class="input-field col s12">
-                                <select class="browser-default" id="type">
-                                    <option value="" selected disabled>Choose your option</option>
-                                    <option value="CURRENT">Current</option>
-                                    <option value="SAVING">Saving</option>
-                                    <option value="CREDIT">Credit</option>
-                                </select>
-                            </div>
+                        <div class="input-field col m6 s12">
+                            <input id="customer_id" type="text" class="validate">
+                            <label for="customer_id">Customer ID</label>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="type">Account type</label>
+                            <br/>
+                        </div>
+                        <div class="input-field col s12">
+                            <select class="browser-default" id="type">
+                                <option value="" selected disabled>Choose your option</option>
+                                <option value="CURRENT">Current</option>
+                                <option value="SAVING">Saving</option>
+                                <option value="CREDIT">Credit</option>
+                            </select>
+                        </div>
+                    </div>
 
-                        
-                        <!--
+                    <!--
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="budget">Budget</label>
@@ -173,22 +220,23 @@
                         </div>
                         -->
 
-                        <div class="row">
-                            <div class="col m12">
-                                <p class="right-align"> <button  action="submit" data-target="modal2" class="btn waves-effect waves-light"  style="background-color:#8588d6;" onclick=""> submit
-                                        <i class="material-icons save small">add</i>
-                                        </button></p>
-                            </div>
+                    <div class="row">
+                        <div class="col m12">
+                            <p class="right-align">
+                                <button action="submit" data-target="modal2" class="btn waves-effect waves-light" style="background-color:#8588d6;" onclick=""> submit
+                                    <i class="material-icons save small">add</i>
+                                </button>
+                            </p>
                         </div>
-                    </form>
                     </div>
+                </form>
             </div>
         </div>
-
+    </div>
 
     <!--JavaScript files-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script src="js/app.js"></script>
-    </body>
-</html>
+</body>
 
+</html>
