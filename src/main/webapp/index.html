@@ -121,11 +121,69 @@
                     </form>
                     </div>
             </div>
-            <!-- <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div> -->
         </div>
-              
+    
+
+         <!-- New account form Modal  -->
+         <div id="modal2" class="modal">
+            <div class="modal-content">
+                <h4>Add new Account</h4>
+                <div class="row modal-content">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col m6 s12">
+                                <input id="customer_name" type="text" class="validate">
+                                <label for="customer_name">Customer name</label>
+                            </div>
+                            <div class="input-field col m6 s12">
+                                <input id="customer_id" type="text" class="validate">
+                                <label for="customer_id">Customer ID</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="type">Account type</label>
+                                <br/>
+                            </div>
+                            <div class="input-field col s12">
+                                <select class="browser-default" id="type">
+                                    <option value="" selected disabled>Choose your option</option>
+                                    <option value="CURRENT">Current</option>
+                                    <option value="SAVING">Saving</option>
+                                    <option value="CREDIT">Credit</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        
+                        <!--
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="budget">Budget</label>
+                                <br/>
+                            </div>
+                            <div class="input-field col s12">
+                                <select class="browser-default" id="budget">
+                                    <option value="" selected disabled>Choose your option</option>
+                                    <option value="1">&lt; $4000</option>
+                                    <option value="2">$4000 - $9000</option>
+                                    <option value="3">&gt; $9000</option>
+                                </select>
+                            </div>
+                        </div>
+                        -->
+
+                        <div class="row">
+                            <div class="col m12">
+                                <p class="right-align"> <button  action="submit" data-target="modal2" class="btn waves-effect waves-light"  style="background-color:#8588d6;" onclick=""> submit
+                                        <i class="material-icons save small">add</i>
+                                        </button></p>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+            </div>
+        </div>
 
 
     <!--JavaScript files-->

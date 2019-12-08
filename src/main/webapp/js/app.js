@@ -82,6 +82,7 @@ function getRequests(url, func){
                 })
             .catch(error => {
                 console.error(error);
+                showError();
             })
 }
 
@@ -93,8 +94,7 @@ function getRequests(url, func){
 /*---------------- Functions to manipulate html elements  ------------*/
 
 
-function showError(data){
-    console.log(data);
+function showError(){
     let cardContent = { content : "",
         title : '',
         titleText : `
@@ -161,7 +161,7 @@ function showAllCustomers(data){
     let titleText =   `
     <div class="search-container">
         <input type="text" class="searchBar" onkeyup="myFunction()" placeholder="Search for customers.." title="Type in a name">
-        <button  data-target="modal1" class="btn waves-effect waves-light main-add-button modal-trigger"  style="background-color:#8588d6;" onclick="createCustomer()">  Add Customer
+        <button  data-target="modal1" class="btn waves-effect waves-light main-add-button modal-trigger"  style="background-color:#8588d6;">  Add Customer
         <i class="material-icons left small">add</i>
         </button>
     </div>
@@ -174,6 +174,24 @@ function showAllCustomers(data){
 
     setMainCard(cardContent);
 }
+
+
+/* Generate table with all accounts */
+function showAllAccounts(data){
+    let cardContent = { content : accountTable(data),
+        title : 'Accounts',
+        titleText : `
+        <div class="search-container">
+            <input type="text" class="searchBar" onkeyup="myFunction()" placeholder="Search for accounts..">
+            <button  data-target="modal2" class="btn waves-effect waves-light main-add-button modal-trigger"  style="background-color:#8588d6;">  Add Account
+            <i class="material-icons left small">add</i>
+            </button>
+        </div>
+        `};
+    
+    setMainCard(cardContent);
+}
+
 
 // Return a table with with customer data
 function customerTable(data){
@@ -199,16 +217,6 @@ function customerTable(data){
             `;
     }
     return generateTable(theaders, tablerows);
-}
-
-
-/* Generate table with all accounts */
-function showAllAccounts(data){
-    let cardContent = { content : accountTable(data),
-        title : 'Accounts',
-        titleText : `<p> Show all Accounts </p>`};
-    
-    setMainCard(cardContent);
 }
 
 
