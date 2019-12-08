@@ -55,7 +55,10 @@ public class Database {
                     int randomBalance = new Random().nextInt();
                     randomBalance = (int) randomBalance / 10000;
                     int balanceSum = 0;
-                    
+                    int trasferAcc = 0;
+                    if(transactionTypes.get(k) == TransType.TRANFSER){
+                        trasferAcc =  accCount -2;
+                    }
                     for(Transaction tr : transactions){
                         balanceSum = balanceSum + tr.getAmount();
                     }
@@ -64,7 +67,8 @@ public class Database {
                             accCount,
                             randomBalance,
                             transactionTypes.get(k),
-                            balanceSum + randomBalance
+                            balanceSum + randomBalance,
+                            trasferAcc
                     );
                     transactions.add(tran);
                     transactionDB.add(tran);

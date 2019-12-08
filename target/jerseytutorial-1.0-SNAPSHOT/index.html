@@ -25,7 +25,7 @@
             <ul class="tabs tabs-transparent main-nav-buttons">
                 <li class="tab" onclick="customerListener()"><a class="active" href="#customers">Customers</a></li>
                 <li class="tab" onclick="accountListener()"><a href="#accounts">Accounts</a></li>
-                <li class="tab"><a href="#transactions">Transactions</a></li>
+                <li class="tab" onclick=" transactionListener()"><a href="#transactions">Transactions</a></li>
                 <li class="tab"><a href="#documentation">API</a></li>
             </ul>
         </div>
@@ -39,58 +39,6 @@
     <div id="transactions" class="col s12">
     </div>
     <div id="documentation" class="col s12">
-
-        <div class="row main-container" style="margin-top: 0% !important;">
-            <div class="col s12 m12 l12 main-inner-container">
-                <div id="button-trigger" class="card card card-default scrollspy">
-                    <div class="card-content">
-                        <h4 class="card-title  main-card-title">Customer Details</h4>
-                        <div class="row">
-                            <div class="col s12 main-card-title-text">
-                                <br>
-                                <button class="btn waves-effect waves-light" id="go-back-btn" style="background-color:#8588d6;" onclick="getRequests(endpoints.customers, showAllCustomers)">go back
-                                    <i class="material-icons left small">arrow_back</i>
-                                </button>
-                                <br>
-                                <br>
-                            </div>
-                            <div class="col s12 main-card-content">
-                                <table class="highlight responsive-table">
-                                    <thead>
-                                        <tr>
-
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Address</th>
-                                            <th>Email</th>
-                                            <th>Created</th>
-                                            <th>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <tr id="0">
-                                            <td> 0 </td>
-                                            <td class=""> Robin O'reily </td>
-                                            <td> Dublin </td>
-                                            <td> robin@email.com </td>
-                                            <td> 2019-12-08T15:11:34.521 </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                           
-                                
-                            
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     <!-- Container card template -->
@@ -119,24 +67,24 @@
         <div class="modal-content">
             <h4>Add new Customer</h4>
             <div class="row modal-content">
-                <form class="col s12">
+                <form class="col s12"  onsubmit="postCustomers(event, this)">
                     <div class="row">
                         <div class="input-field col m6 s12">
-                            <input id="first_name" type="text" class="validate">
+                            <input name="first_name" id="first_name" type="text" class="validate">
                             <label for="first_name">First Name</label>
                         </div>
                         <div class="input-field col m6 s12">
-                            <input id="last_name" type="text" class="validate">
+                            <input name="last_name" id="last_name" type="text" class="validate">
                             <label for="last_name">Last Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col m6 s12">
-                            <input id="email_input" type="email" class="validate">
+                            <input name="email_input" id="email_input" type="email" class="validate">
                             <label for="email_input">Email</label>
                         </div>
                         <div class="input-field col m6 s12">
-                            <input id="address_input" type="text" class="validate">
+                            <input name="address_input"  id="address_input" type="text" class="validate">
                             <label for="address_input">Address</label>
                         </div>
                     </div>

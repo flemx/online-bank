@@ -8,6 +8,7 @@ package com.mycompany.jerseytutorial.services;
 import com.mycompany.jerseytutorial.databases.Database;
 import com.mycompany.jerseytutorial.models.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -41,6 +42,21 @@ public class TransactionService {
              }
          }
          return null;
+    }
+    
+    
+    public static Transaction createTransaction(Transaction c){
+        c.setId(list.get(list.size()-1).getId() + 1);
+        c.setCreated(new Date());
+        
+        // Update the associated acount
+        AccountService.addTransaction(c);
+       
+        // Get current balance from account to set post transaction balance
+        c.setPostTransBalance( AccountService.getAccount(c.getAccountNumber()).getBalance());
+        
+        list.add(c);
+        return c;
     }
         
     

@@ -10,6 +10,7 @@ import com.mycompany.jerseytutorial.databases.Database;
 import com.mycompany.jerseytutorial.models.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 /**
  *
@@ -41,6 +42,13 @@ public class CustomerService {
             System.out.println(e);
             return null;
         }        
+    }
+    
+    public static Customer createCustomer(Customer c){
+        c.setId(list.get(list.size()-1).getId() + 1);
+        c.setCreated(new Date());
+        list.add(c);
+        return c;
     }
     
   

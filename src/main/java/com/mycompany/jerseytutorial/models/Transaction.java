@@ -20,16 +20,18 @@ public class Transaction {
     private int amount;
     private TransType type;
     private int PostTransBalance;
+    private int transferAccount;
     private Date created;
     //private List<Transfer> transfers;
 
-    public Transaction(int id, int accountNumber, int amount, TransType type, int PostTransBalance) {
+    public Transaction(int id, int accountNumber, int amount, TransType type, int PostTransBalance, int transferAccount) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.amount = amount;
         this.type = type;
         this.PostTransBalance = PostTransBalance;
         this.created = new Date();
+        this.transferAccount = transferAccount;
     }
 
     public Transaction() {
@@ -81,6 +83,14 @@ public class Transaction {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public int getTransferAccount() {
+        return transferAccount;
+    }
+
+    public void setTransferAccount(int transferAccount) {
+        this.transferAccount = transferAccount;
     }
     
     

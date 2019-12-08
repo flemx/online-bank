@@ -1,3 +1,9 @@
+/**
+ * 
+ *  @ Damien Fleminks,  Anthony Ennis
+ *  All code is handcrafted, nothing copied online
+ */
+
 
 
 /*---------------- Defining html elements and objects ------------*/
@@ -8,7 +14,8 @@ const endpoints = {
     customers : './api/customers',
     customer : id => {return `./api/customers/${id}`},
     accounts : './api/accounts',
-    account : id => {return `./api/accounts/${id}`}
+    account : id => {return `./api/accounts/${id}`},
+    transactions : './api/transactions'
 }
 
 
@@ -39,12 +46,9 @@ return `
 
 function detailGoback(onclick){
     return `
-        <br>
         <button class="btn waves-effect waves-light" style="background-color:#8588d6;" onclick="${onclick}">go back
         <i class="material-icons left small">arrow_back</i>
         </button>
-        <br>
-        <br>
 `
 }
 
@@ -108,8 +112,13 @@ function customerListener(){
     getRequests(endpoints.customers, showAllCustomers)
     document.getElementById('customers').appendChild(mainCard);
 }
+function transactionListener(){
+    getRequests(endpoints.transactions, showAllTransaction)
+    document.getElementById('transactions').appendChild(mainCard);
+}
 
-/*----------------  Functions to fetch data  ------------*/
+
+/*----------------  Functions to fetch and submit data  ------------*/
 
 
 
@@ -135,6 +144,43 @@ function getRequests(url, func){
 
 
 
+// Run post requests and execute the result in the function given
+function postCustomers(event, form){
+    const body = JSON.stringify({
+        "accounts": [],
+        "address": `${form.address_input.value}`,
+        "email": `${form.email_input.value}` ,
+        "id": 0,
+        "name": `${form.first_name.value} ${form.last_name.value}`
+    });
+    postRequests(endpoints.customers, body)
+}
+
+
+
+function postRequests(url, requestBody){
+
+    //event.preventDefault();
+
+    console.log(`Executing POST request to: ${url}`);
+    fetch(url,{
+        method : 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },  
+        body : requestBody
+        })
+            .then((resp) => resp.json())
+            .then(data => {
+                // func(data);
+                })
+            .catch(error => {
+                console.error(error);
+                showError();
+            })
+}
+
 
 
 /*---------------- Functions to manipulate html elements  ------------*/
@@ -156,16 +202,26 @@ function showError(){
 
 
 
-// Set related list on detail page
-
-function createRelatedList(data){
+// Set related account list on detail page
+function createRelatedAccountList(data){
     
     let el = document.createElement('div');
-    el.innerHTML = relatedLists('mail_outline', 'Show Accounts', customerAccounts(data.accounts));
+    el.innerHTML = relatedLists('mail_outline', 'Show Accounts', customerAccounts(data));
     mainCard.querySelector('.main-card-content').appendChild(el);
     //Initialise collapse effect
     M.Collapsible.init(document.querySelectorAll('.collapsible'));
 }
+
+// Set related transaction list on detail page
+function createRelatedTransactionList(data){
+    let el = document.createElement('div');
+    el.innerHTML = relatedLists('attach_money', 'Show Transactions', transactionTable(data));
+    mainCard.querySelector('.main-card-content').appendChild(el);
+    //Initialise collapse effect
+    M.Collapsible.init(document.querySelectorAll('.collapsible'));
+}
+
+
 
 
 // Return details of single Account from customer detail page
@@ -178,6 +234,8 @@ function showAccountDetailCustomer(data){
 
     setMainCard(cardContent);
     document.querySelector('.accountcustomer-table-link').className = '';
+
+    createRelatedTransactionList(data.transactions);
 }
 
 
@@ -192,6 +250,8 @@ function showAccountDetail(data){
 
     setMainCard(cardContent);
     document.querySelector('.account-table-link').className = '';
+
+    createRelatedTransactionList(data.transactions);
 }
 
 
@@ -208,7 +268,7 @@ function showCustomerDetailAccounts(data){
     setMainCard(cardContent);
     document.querySelector('.customer-table-link').className = '';
 
-    createRelatedList(data);
+    createRelatedAccountList(data.accounts);
 }
 
 
@@ -224,8 +284,12 @@ function showCustomerDetail(data){
     setMainCard(cardContent);
     document.querySelector('.customer-table-link').className = '';
     
-    createRelatedList(data);
+    createRelatedAccountList(data.accounts);
 }
+
+
+
+
 
 
 /* Generate table with all transactions */
@@ -233,17 +297,14 @@ function showAllTransaction(data){
 
 
     let titleText =   `
-    <div class="search-container">
-        <input type="text" class="searchBar" onkeyup="myFunction()" placeholder="Search for transactions.." title="Type in a name">
-        <button  data-target="modal1" class="btn waves-effect waves-light main-add-button modal-trigger"  style="background-color:#8588d6;">  Add Customer
-        <i class="material-icons left small">add</i>
-        </button>
+    <div class="search-container" style="opacity: 0;">
+    
     </div>
         `
 
     //inner-container
-    let cardContent = { content : customerTable(data),
-        title : 'Customers',
+    let cardContent = { content : transactionTable(data),
+        title : 'Transactions',
         titleText : titleText};
 
     setMainCard(cardContent);
@@ -310,6 +371,36 @@ function customerTable(data){
                 <td class="customer-table-link"> ${th.name} </td>
                 <td> ${th.address} </td>
                 <td> ${th.email} </td> 
+                <td> ${th.created} </td> 
+            </tr>
+            `;
+    }
+    return generateTable(theaders, tablerows);
+}
+
+
+
+// Return a table with with transactions data
+function transactionTable(data){
+
+    const theaders = `
+    <th>Type</th>
+    <th>Account Number</th>
+    <th>Transfer Account</th>
+    <th>amount</th>
+    <th>Account Balance</th>
+    <th>Created<th>`;
+
+    let tablerows = ``;
+
+    for(let th of data){
+        tablerows = tablerows + `
+            <tr id="${th.id}">
+                <td> ${th.type} </td> 
+                <td> ${th.accountNumber} </td>
+                <td> ${th.transferAccount} </td>
+                <td> ${th.amount} </td> 
+                <td> ${th.postTransBalance} </td>
                 <td> ${th.created} </td> 
             </tr>
             `;

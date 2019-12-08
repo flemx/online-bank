@@ -8,6 +8,7 @@ package com.mycompany.jerseytutorial.services;
 import com.mycompany.jerseytutorial.databases.Database;
 import com.mycompany.jerseytutorial.models.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -58,6 +59,28 @@ public class AccountService {
             return null;
         }
     }
-      
+     
+    public static Account createAccount(Account a){
+        a.setAccountNumber(list.get(list.size()-1).getAccountNumber()+ 1);
+        a.setCreated(new Date());
+        list.add(a);
+        return a;
+    }
+    
+    /**
+     * Function to update Account which hold the transactions
+     * @param t 
+     */
+    public static void addTransaction(Transaction t){
+        
+        for(int i = 0; i < list.size(); i++){
+            if(t.getAccountNumber() == list.get(i).getAccountNumber()){
+                List<Transaction> trans =  list.get(i).getTransactions();
+                trans.add(t);
+                list.get(i).setTransactions(trans);
+            }
+        }
+    }
+    
     
 }
