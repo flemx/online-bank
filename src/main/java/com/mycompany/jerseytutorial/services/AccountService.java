@@ -63,6 +63,10 @@ public class AccountService {
     public static Account createAccount(Account a){
         a.setAccountNumber(list.get(list.size()-1).getAccountNumber()+ 1);
         a.setCreated(new Date());
+        
+        //Add account to associated customer
+        CustomerService.addAccount(a);
+        
         list.add(a);
         return a;
     }

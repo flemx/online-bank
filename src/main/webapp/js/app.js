@@ -15,6 +15,7 @@ const endpoints = {
     customer : id => {return `./api/customers/${id}`},
     accounts : './api/accounts',
     account : id => {return `./api/accounts/${id}`},
+    accountTransactions : id => {return `./api/accounts/${id}/transactions`},
     transactions : './api/transactions'
 }
 
@@ -158,10 +159,36 @@ function postCustomers(event, form){
 
 
 
-function postRequests(url, requestBody){
+// Run post requests and execute the result in the function given
+function postAccounts(event, form){
+    const body = JSON.stringify({
+        "accounts": [],
+        "accountType": `${form.address_input.value}`,
+        "customerId": `${form.email_input.value}` ,
+        "customerName": 0,
+        "sortCode": `BANK01`
+    });
+    postRequests(endpoints.customers, body)
+}
 
-    //event.preventDefault();
+// Run post requests and execute the result in the function given
+function postTransaction(event, form){
+    event.preventDefault();
+    let ele = document.getElementById('trans_type').options;
+    let type = document.getElementById('trans_type').options[ele.selectedIndex].value;
+    let account =  parseInt(document.querySelector('tbody').firstElementChild.id); 
+    const body = JSON.stringify({
+        "amount": `${form.amount_input.value}`,
+        "type": `${type}` ,
+        "accountNumber": account
+    });
+    postRequests(endpoints.transactions, body, afterTransaction);
+}
 
+
+
+
+function postRequests(url, requestBody, func){
     console.log(`Executing POST request to: ${url}`);
     fetch(url,{
         method : 'POST',
@@ -173,7 +200,7 @@ function postRequests(url, requestBody){
         })
             .then((resp) => resp.json())
             .then(data => {
-                // func(data);
+                func(data);
                 })
             .catch(error => {
                 console.error(error);
@@ -181,6 +208,15 @@ function postRequests(url, requestBody){
             })
 }
 
+
+function afterTransaction(data){
+    console.log(data);
+    document.querySelector('.related-list-container').remove();
+    let modal = document.querySelector('#modal3');
+     M.Modal.init(modal).close();
+    getRequests(endpoints.accountTransactions(data.accountNumber), createRelatedTransactionList);
+
+}
 
 
 /*---------------- Functions to manipulate html elements  ------------*/
@@ -227,9 +263,17 @@ function createRelatedTransactionList(data){
 // Return details of single Account from customer detail page
 function showAccountDetailCustomer(data){
     console.log(data);
+
+    let transferButton = `
+    <button  data-target="modal3" class="btn waves-effect waves-light main-add-button modal-trigger"  style="background-color:#8588d6;">  Make transaction
+          <i class="material-icons left small">attach_money</i>
+    </button>
+`;
+
+
     let cardContent = { content : customerAccounts([data]),
         title : 'Account Details',
-        titleText : detailGoback(`getRequests(endpoints.customer(${data.customerId}), showCustomerDetail)`)
+        titleText : detailGoback(`getRequests(endpoints.customer(${data.customerId}), showCustomerDetail)`)   + transferButton
     };
 
     setMainCard(cardContent);
@@ -243,9 +287,17 @@ function showAccountDetailCustomer(data){
 // Return details of single Account
 function showAccountDetail(data){
     console.log(data);
+
+
+    let transferButton = `
+    <button  data-target="modal3" class="btn waves-effect waves-light main-add-button modal-trigger"  style="background-color:#8588d6;">  Make transaction
+          <i class="material-icons left small">attach_money</i>
+    </button>
+`;
+
     let cardContent = { content : accountsPage([data]),
         title : 'Account Details',
-        titleText : detailGoback('getRequests(endpoints.accounts, showAllAccounts)')
+        titleText : detailGoback('getRequests(endpoints.accounts, showAllAccounts)')  + transferButton
     };
 
     setMainCard(cardContent);
@@ -260,6 +312,8 @@ function showAccountDetail(data){
 // Return details of single customer from accounts page
 function showCustomerDetailAccounts(data){
     console.log(data);
+
+  
     let cardContent = { content : customerTable([data]),
         title : 'Customer Details',
         titleText : detailGoback('getRequests(endpoints.accounts, showAllAccounts)')

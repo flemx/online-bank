@@ -51,5 +51,15 @@ public class CustomerService {
         return c;
     }
     
+     public static void addAccount(Account a){
+        for(int i = 0; i < list.size(); i++){
+            if(a.getCustomerId() == list.get(i).getId()){
+                List<Account> accs =  list.get(i).getAccounts();
+                accs.add(a);
+                list.get(i).setAccounts(accs);
+            }
+        }
+    }
+    
   
 }
