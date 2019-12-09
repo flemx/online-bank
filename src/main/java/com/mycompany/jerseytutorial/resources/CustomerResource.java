@@ -26,14 +26,23 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class CustomerResource {
     
-     
-	
+    
+    /**
+     *  Return all customers
+     * @param id
+     * @return 
+     */
     @GET
     public List<Customer> getCustomers(@PathParam("getCustomers") int id) {
         System.out.println("getAllCustomers..."+id);
 	return CustomerService.getAllCustomers();
     }
-	
+
+    /**
+     *  Return customer by customer id
+     * @param id
+     * @return 
+     */
     @GET
     @Path("/{customerID}")
     public Customer getCustomer(@PathParam("customerID") int id) {
@@ -41,13 +50,22 @@ public class CustomerResource {
 	return CustomerService.geCustomer(id);
     }
     
+    /**
+     * Return all accounts from customer by ID
+     * @param id
+     * @return 
+     */
     @GET
     @Path("/{customerID}/accounts")
     public List<Account> getCustomerAccounts(@PathParam("customerID") int id) {
 	return CustomerService.geCustomerAccounts(id);
     }
     
-    
+    /**
+     *  Create new customer
+     * @param c
+     * @return 
+     */
     @POST
     public Customer postCustomer(Customer c) {
 	return CustomerService.createCustomer(c);

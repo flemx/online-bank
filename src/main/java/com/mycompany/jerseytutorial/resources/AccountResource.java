@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Damien Fleminks
+ * @author Damien Fleminks, Anthony Ennis
  */
 @Path("/accounts")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -26,24 +26,42 @@ import javax.ws.rs.core.MediaType;
 public class AccountResource {
     
     
+    /**
+     *  Return all accounts
+     * @return 
+     */
     @GET
     public List<Account> getAccounts() {
 	return AccountService.getAllAccounts();
     }
     
+    /**
+     *  Return account object based on account number
+     * @param id
+     * @return 
+     */
     @GET
     @Path("/{accountNumber}")
     public Account getAccount(@PathParam("accountNumber") int id) {
 	return AccountService.getAccount(id);
     }
     
-      
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     @GET
     @Path("/{accountNumber}/transactions")
     public List<Transaction> getAccountTransactions(@PathParam("accountNumber") int id) {
 	return AccountService.getAccountTransactions(id);
     }
     
+    /**
+     *  CReate new Account
+     * @param a
+     * @return 
+     */
     @POST
     public Account postCustomer(Account a) {
 	return AccountService.createAccount(a);

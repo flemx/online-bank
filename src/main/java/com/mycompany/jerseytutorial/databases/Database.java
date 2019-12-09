@@ -14,11 +14,9 @@ import java.util.Random;
 
 /**
  *
- * @author wsapi-lecturer
+ * @author Damien Fleminks,  Anthony Ennis
  */
 public class Database {
-    public static List<Message> messageDB = new ArrayList<>();
-    public static List<Comment> commentDB = new ArrayList<>();
     public static List<Customer> customerDB = new ArrayList<>();
     public static List<Account> accountDB = new ArrayList<>();
     public static List<Transaction> transactionDB = new ArrayList<>();
@@ -91,28 +89,6 @@ public class Database {
           
           
           
-        // Lets create some comments
-        Comment c1 = new Comment (1,"One comment");  
-        Comment c2 = new Comment (2,"Another comment");
-        Comment c3 = new Comment (3,"And another comment more");
-        
-        commentDB.add(c1);
-        commentDB.add(c2);
-        commentDB.add(c3);
-        
-        // Lets add those comments to each of the messages. 
-        // Keep in mind ALL messages will contain same list of seeded comments!!!
-        Message m1 = new Message(1,"First", "Manuel", commentDB);
-        Message m2 = new Message(2,"Second", "Jack", commentDB);        
-        Message m3 = new Message(3,"Third", "Emer", commentDB);
-        Message m4 = new Message(4,"First", "Lisa", commentDB);
-        Message m5 = new Message(5,"Fifth", "Jack", commentDB);
-        
-        messageDB.add(m1);
-        messageDB.add(m2);
-        messageDB.add(m3);
-        messageDB.add(m4);
-        messageDB.add(m5);
         
         init = false;
      }
@@ -129,14 +105,5 @@ public class Database {
     public static List<Transaction> getTransactionDB() {
         return transactionDB;
     }
-     
-     
-    
-    public static List<Message> getMessagesDB() {
-        return messageDB;
-    }
-    
-    public static List<Comment> getCommentsDB() {
-        return commentDB;
-    }
+
 }

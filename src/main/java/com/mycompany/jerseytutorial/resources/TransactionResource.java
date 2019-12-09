@@ -25,17 +25,31 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class TransactionResource {
     
+    /**
+     * Return all transactions
+     * @return 
+     */
     @GET
     public List<Transaction> getTransactions() {
 	return TransactionService.getAllTransactions();
     }
     
+    /**
+     *  Return transaction by Id
+     * @param id
+     * @return 
+     */
     @GET
     @Path("/{transactionId}")
     public Transaction getTransaction(@PathParam("transactionId") int id) {
 	return TransactionService.getTransaction(id);
     }
     
+    /**
+     * Create new transaction
+     * @param c
+     * @return 
+     */
     @POST
     public Transaction postTransaction(Transaction c) {
 	return TransactionService.createTransaction(c);

@@ -45,6 +45,11 @@ public class TransactionService {
     }
     
     
+    /**
+     * Create  new transaction
+     * @param c
+     * @return 
+     */
     public static Transaction createTransaction(Transaction c){
         c.setId(list.get(list.size()-1).getId() + 1);
         c.setCreated(new Date());

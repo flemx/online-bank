@@ -9,9 +9,10 @@ import java.util.Date;
 import java.util.List;
 import types.*;
 
+
 /**
  *
- * @author dfleminks
+ * @author Damien Fleminks, Anthony Ennis
  */
 public class Transaction {
     

@@ -22,10 +22,14 @@ public class CustomerService {
       private static final List<Customer> list = d.getCustomersDB();
      
        public static List<Customer> getAllCustomers() {
-        return list;
+       return list;
     }
 
-        
+    /**
+     *  Return customer by ID
+     * @param id
+     * @return 
+     */
     public static Customer geCustomer(int id) {
         for(Customer c: list){
              if(c.getId() == id){
@@ -35,6 +39,11 @@ public class CustomerService {
          return null;
     }
     
+    /**
+     *  geCustomerAccounts
+     * @param id
+     * @return 
+     */
     public static List<Account> geCustomerAccounts(int id) {
         try{
              return geCustomer(id).getAccounts();
@@ -44,6 +53,11 @@ public class CustomerService {
         }        
     }
     
+    /**
+     *  Create new customer and set ID and created date
+     * @param c
+     * @return 
+     */
     public static Customer createCustomer(Customer c){
         c.setId(list.get(list.size()-1).getId() + 1);
         c.setCreated(new Date());
@@ -51,6 +65,10 @@ public class CustomerService {
         return c;
     }
     
+    /**
+     *  Add account to customer after new account is created
+     * @param a 
+     */
      public static void addAccount(Account a){
         for(int i = 0; i < list.size(); i++){
             if(a.getCustomerId() == list.get(i).getId()){
